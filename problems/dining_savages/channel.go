@@ -1,10 +1,10 @@
 package main
 
 import (
-	"sync"
 	"fmt"
-	"time"
 	"os"
+	"sync"
+	"time"
 )
 
 
@@ -15,6 +15,7 @@ type Pot struct {
 	servings int
 }
 
+const TIMES_COOKED = 100
 const M = 8
 
 func (p Pot) potFull() bool {
@@ -33,6 +34,7 @@ type Savage struct {
 
 
 func cook(potEmpty * chan bool, potFull *chan bool, pot *Pot) {
+	num_cooked := 0
 	for {
 		// Wait until pot is empty
 		<- *potEmpty
@@ -41,6 +43,10 @@ func cook(potEmpty * chan bool, potFull *chan bool, pot *Pot) {
 		pot.servings = M
 		// Alert the food is done.
 		*potFull <- true
+		num_cooked++
+		if num_cooked > TIMES_COOKED {
+			break
+		}
 	}
 }
 
@@ -50,12 +56,12 @@ func (s Savage) eat() {
 		if s.pot.potEmpty() {
 			// Wake the cook
 			*s.potEmpty <- true
-			// Wait until the pot is full
+			// Wait unt il the pot is full
 			<- *s.potFull
 		}
 
 		fmt.Println("Savage eating")
-		//time.Sleep(time.Second)
+		time.Sleep(time.Second)
 
 		s.pot.servings -= 1
 		if s.pot.servings < 0 { fmt.Println("Error!"); os.Exit(1)}
@@ -79,9 +85,5 @@ func main() {
 	}
 
 	// 1 cook
-	go cook(&empty, &full, &pot)
-
-	for {
-		time.Sleep(time.Second * 10000)
-	}
+	cook(&empty, &full, &pot)
 }

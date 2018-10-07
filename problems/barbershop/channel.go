@@ -5,10 +5,12 @@ import (
 	"time"
 )
 
-func run_barber(queue *chan int, num int) {
+func run_barber(queue *chan int, num int, done *chan int) {
 	for {
 		i :=<- *queue
 		fmt.Printf("Barber: %d, Serving customer %d\n", num, i)
+		time.Sleep(time.Second * 1)
+		*done <- i
 	}
 }
 
@@ -20,15 +22,14 @@ func run_customer(queue *chan int, num int) {
 }
 
 func main() {
-	numBarbers := 8
+	numBarbers := 3
 	numCustomers := 10
 
-	//barberQueue := make(chan int, numBarbers)
+	barberQueue := make(chan int, numBarbers)
 	customerQueue := make(chan int, numCustomers)
 
 	for i := 0; i < numBarbers; i++ {
-		//barberQueue <- i
-		go run_barber(&customerQueue, i)
+		go run_barber(&customerQueue, i, &barberQueue)
 	}
 
 	for i := 0; i < numCustomers; i++ {
@@ -36,8 +37,7 @@ func main() {
 		go run_customer(&customerQueue, i)
 	}
 
-	for {
-		time.Sleep(time.Second * 100000)
+	for i := 0; i < numCustomers; i++ {
+		<- barberQueue
 	}
-
 }

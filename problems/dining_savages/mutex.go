@@ -1,10 +1,9 @@
 package main
 
 import (
-	"sync"
-	"time"
 	"fmt"
 	"os"
+	"sync"
 )
 
 type Pot2 struct {
@@ -13,6 +12,7 @@ type Pot2 struct {
 }
 
 const M1 = 8
+const NUM_COOKED = 1000
 
 func (p Pot2) potFull() bool {
 	return p.servings == M1
@@ -54,11 +54,16 @@ func putServingsInPot(pot *Pot2) {
 }
 
 func cook_signal(emptyPot *Semaphore, fullPot *Semaphore, pot *Pot2) {
+	current_cooked := 0
 	for {
 		emptyPot.wait()
 		fmt.Println("Cooking food")
 		putServingsInPot(pot)
 		fullPot.signal()
+		current_cooked++
+		if current_cooked >= NUM_COOKED {
+			break
+		}
 	}
 }
 
@@ -89,9 +94,5 @@ func main() {
 	}
 
 	// 1 cook
-	go cook_signal(&empty, &full, &pot)
-
-	for {
-		time.Sleep(time.Second * 10000)
-	}
+	cook_signal(&empty, &full, &pot)
 }
