@@ -12,7 +12,7 @@ type Pot2 struct {
 }
 
 const M1 = 8
-const NUM_COOKED = 1000
+const NUM_COOKED = 20
 
 func (p Pot2) potFull() bool {
 	return p.servings == M1

@@ -15,7 +15,7 @@ type Pot struct {
 	servings int
 }
 
-const TIMES_COOKED = 100
+const TIMES_COOKED = 20
 const M = 8
 
 func (p Pot) potFull() bool {

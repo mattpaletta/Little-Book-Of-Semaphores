@@ -27,15 +27,3 @@ if __name__ == "__main__":
 
     print("Done (threading)")
     print(humanfriendly.format_timespan(avg(time_taken)))
-
-    time_taken = []
-    for _ in range(num_samples):
-        start = time.time()
-        pool = PPool(processes = 10)
-        pool.map(blah, range(num_items))
-        pool.close()
-
-        time_taken.append(time.time() - start)
-
-    print("Done (processes)")
-    print(humanfriendly.format_timespan(avg(time_taken)))

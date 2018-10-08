@@ -1,0 +1,10 @@
+testing:
+
+  auto_skip:
+    default: True
+    help: "Automatically skip the problems that have already have results."
+    required: False
+
+  sample_size:
+    default: 2
+    required: False

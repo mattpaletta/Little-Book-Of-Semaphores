@@ -5,7 +5,7 @@ import "fmt"
 func do_work(done *chan int, j int, size_of_queue int) {
     sum := 0
 
-    for i := 0; i < 10; i++ {
+    for i := 0; i < 10000; i++ {
 		sum += i
 	}
 
