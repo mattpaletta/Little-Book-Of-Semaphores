@@ -62,7 +62,7 @@ func (b *eventBuffer) get() (e event64) {
 	return
 }
 
-const nEvents = 6
+const nEvents = 20
 
 func main() {
 	mutex = sem.NewChanSem(1, 1)

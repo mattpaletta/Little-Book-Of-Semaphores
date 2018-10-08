@@ -39,7 +39,7 @@ func WaitForEvent() event64 {
 	return event64(atomic.AddInt64(&last, 1))
 }
 
-const nEvents = 6
+const nEvents = 20
 
 func main() {
 	go consumer(1)

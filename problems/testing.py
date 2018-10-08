@@ -126,7 +126,7 @@ def generate_docker_file(root, files):
                     "COPY --from=test_builder /go/src/github.com/mattpaletta/Little-Book-Of-Semaphores/app ./app")
                 dockerfile_contents.append("ADD {0} /app/{1}".format(os.path.join(root, file), file))
 
-            if requirements != "":
+            if requirements != "" and lang in ["pypy", "python"]:
                 dockerfile_contents.append("ADD {0} /app/requirements.txt".format(requirements))
                 dockerfile_contents.append("RUN pip3 install -r requirements.txt")
 
@@ -356,7 +356,7 @@ if __name__ == "__main__":
                 stats = result.system_info
 
                 # Test_time is the average test time
-                normalized_test_time = time_taken - test_time
+                normalized_test_time = (1 / test_time) * time_taken
 
                 cpu_usage_list = list(map(lambda stat: stat["cpu_stats"]["cpu_usage"]["total_usage"], stats))
                 max_cpu_usage = max(cpu_usage_list) if len(cpu_usage_list) > 0 else 0.0

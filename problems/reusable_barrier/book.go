@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	n          = 5
+	n          = 10
 	count      = 0
 	turnstile  = sem.NewChanSem(0, 1)
 	turnstile2 = sem.NewChanSem(1, 1)

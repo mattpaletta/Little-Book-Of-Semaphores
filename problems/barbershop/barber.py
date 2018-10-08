@@ -1,3 +1,4 @@
+import os
 from threading import Thread, Lock, Event
 import time
 import random
@@ -10,6 +11,7 @@ customerIntervalMin = 1
 customerIntervalMax = 1
 haircutDurationMin = 1
 haircutDurationMax = 1
+customers_served = 0
 
 
 class BarberShop:
@@ -33,6 +35,8 @@ class BarberShop:
     def barberGoToWork(self):
         while True:
             mutex.acquire()
+            global customers_served
+            customers_served += 1
 
             if len(self.waitingCustomers) > 0:
                 c = self.waitingCustomers[0]
@@ -84,15 +88,18 @@ class Barber:
         print('{0} is done'.format(customer.name))
 
 
+
 if __name__ == '__main__':
+    if os.path.exists("/.dockerenv"):
+        exit(0)
     customers = list(map(lambda _: Customer(names.get_first_name()), range(10)))
     barber = Barber()
 
-    barberShop = BarberShop(barber, numberOfSeats = 3)
+    barberShop = BarberShop(barber, numberOfSeats = 1)
     barberShop.openShop()
+    initial_num_customers = len(customers) - 1
 
-    while len(customers) > 0:
-        c = customers.pop()
+    for c in customers:
         # New customer enters the barbershop
         barberShop.enterBarberShop(c)
         customerInterval = random.randrange(customerIntervalMin, customerIntervalMax + 1)

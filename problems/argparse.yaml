@@ -6,5 +6,5 @@ testing:
     required: False
 
   sample_size:
-    default: 2
+    default: 10
     required: False

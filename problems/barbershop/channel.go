@@ -23,7 +23,7 @@ func run_customer(queue *chan int, num int) {
 
 func main() {
 	numBarbers := 3
-	numCustomers := 10
+	numCustomers := 100
 
 	barberQueue := make(chan int, numBarbers)
 	customerQueue := make(chan int, numCustomers)
