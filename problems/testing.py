@@ -6,7 +6,7 @@ import pickle
 import sys
 import time
 from typing import List
-
+from matplotlib import pyplot as plt
 import docker
 import pandas as pd
 import yaml
@@ -381,3 +381,88 @@ if __name__ == "__main__":
 
             logging.info("Writing overall run data")
             pd.DataFrame(general_df).to_csv(overall_run_csv)
+
+    logging.info("Plotting test results.")
+    for test, files in _get_tests():
+        logging.info("Found test: {0}".format(test))
+        for dockerfile, test_command, entry_command, file in generate_docker_file(test, files):
+            if entry_command.startswith("./"):
+                test_file = (file.split(" ")[-1]).split(".")[0]  # Get the filename
+            else:
+                test_file = (entry_command.split(" ")[-1]).split(".")[0]
+
+            first_run_csv = "results/tables/{0}.csv".format(
+                test[2:] + "_first_" + entry_command.split(" ")[0] + "_" + test_file)
+            overall_run_csv = "results/tables/{0}.csv".format(
+                test[2:] + "_" + entry_command.split(" ")[0] + "_" + test_file)
+
+            if not os.path.exists("results/figures"):
+                os.mkdir("results/figures")
+
+            if not os.path.exists("results/figures/first"):
+                os.mkdir("results/figures/first")
+
+            if not os.path.exists("results/figures/overall"):
+                os.mkdir("results/figures/overall")
+
+            if not os.path.exists(first_run_csv):
+                logging.warning("First run CSV not found.")
+            else:
+                df = pd.read_csv(first_run_csv, index_col = 0)
+                if len(df) == 0:
+                    logging.warning("Found empty dataframe")
+                    continue
+
+                # TODO:// Calculate CPU usage percentage.
+                # cpuDelta = res.cpu_stats.cpu_usage.total_usage - res.precpu_stats.cpu_usage.total_usage
+                # systemDelta = res.cpu_stats.system_cpu_usage - res.precpu_stats.system_cpu_usage
+                # RESULT_CPU_USAGE = cpuDelta / systemDelta * 100
+
+
+                time_recorded = df["time_recorded"]
+                for column in df.columns:
+                    if column == "time_recorded":
+                        continue
+
+                    plot_output = "results/figures/first/" + test[2:] + "_first_" + entry_command.split(" ")[0] + "_" + test_file + "_" + column + ".png"
+
+                    if os.path.exists(plot_output):
+                        os.remove(plot_output)
+
+                    plt.plot(df.index, df[column])
+                    plt.xlabel('sample')
+                    plt.ylabel(column)
+                    plt.title(test[2:] + "_first_" + entry_command.split(" ")[0] + "_" + test_file + "_" + column)
+                    plt.grid(True)
+                    plt.savefig(plot_output)
+                    # plt.show()
+                    plt.close()
+
+            if not os.path.exists(overall_run_csv):
+                logging.warning("First run CSV not found.")
+            else:
+                df = pd.read_csv(overall_run_csv, index_col = 0)
+                if len(df) == 0:
+                    logging.warning("Found empty dataframe")
+                    continue
+
+                time_recorded = df["iteration"]
+                for column in df.columns:
+                    if column == "iteration":
+                        continue
+
+                    plot_output = "results/figures/overall/" + test[2:] + "_samples_" + entry_command.split(" ")[
+                        0] + "_" + test_file + "_" + column + ".png"
+
+                    if os.path.exists(plot_output):
+                        os.remove(plot_output)
+
+                    plt.plot(df.index, df[column])
+                    plt.xlabel('iteration')
+                    plt.ylabel(column)
+                    plt.title(test[2:] + "_samples_" + entry_command.split(" ")[0] + "_" + test_file + "_" + column)
+                    plt.grid(True)
+                    plt.savefig(plot_output)
+                    # plt.show()
+                    plt.close()
+

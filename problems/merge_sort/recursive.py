@@ -36,7 +36,7 @@ def merge_sort_rec(array):
 
 
 if __name__ == "__main__":
-    lst = list(range(1, 10_000_000 + 1))
+    lst = list(range(1, 8000000 + 1))
     print("Staring merge")
     start = time.time()
     x = merge_sort_rec(list(lst))
