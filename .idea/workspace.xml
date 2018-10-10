@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd6de92c-a84d-4999-971b-18ddf198f7b7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Little-Book-Of-Semaphores.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Little-Book-Of-Semaphores.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LittleBookOfSemaphores" beforeDir="false" afterPath="$PROJECT_DIR$/LittleBookOfSemaphores" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LittleBookOfSemaphores/3-Basic_Synchronization_Patterns/3.7-Reusable_Barrier/book.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LittleBookOfSemaphores/4-Classical_Problems/4.1-Producer-consumer/book.go" beforeDir="false" />
@@ -67,7 +63,7 @@
           <entry key="gitignore" value="1" />
           <entry key="go" value="32" />
           <entry key="py" value="29" />
-          <entry key="txt" value="7" />
+          <entry key="txt" value="8" />
           <entry key="yaml" value="3" />
         </counts>
       </usages-collector>
@@ -77,7 +73,7 @@
           <entry key="Dockerfile" value="1" />
           <entry key="Git file" value="1" />
           <entry key="Go" value="14" />
-          <entry key="PLAIN_TEXT" value="31" />
+          <entry key="PLAIN_TEXT" value="32" />
           <entry key="Python" value="23" />
           <entry key="YAML" value="3" />
         </counts>
@@ -89,7 +85,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problems/testing.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="22">
@@ -102,6 +98,15 @@
                 <marker date="1539108189486" expanded="true" signature="5530:5570" ph="..." />
                 <marker date="1539108189486" expanded="true" signature="7813:7826" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/problems/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -185,19 +190,6 @@
               <item name="Little-Book-Of-Semaphores" type="b2602c69:ProjectViewProjectNode" />
               <item name="Little-Book-Of-Semaphores" type="462c0819:PsiDirectoryNode" />
               <item name="problems" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Little-Book-Of-Semaphores" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Little-Book-Of-Semaphores" type="462c0819:PsiDirectoryNode" />
-              <item name="problems" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Little-Book-Of-Semaphores" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Little-Book-Of-Semaphores" type="462c0819:PsiDirectoryNode" />
-              <item name="problems" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
-              <item name="tables" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -334,6 +326,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30170575" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -563,13 +556,6 @@
     <entry file="file://$PROJECT_DIR$/problems/results/tables/merge_sort_python3_yield.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/problems/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/problems/results/tables/merge_sort_first_pypy3_memory_baseline.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -616,6 +602,13 @@
             <marker date="1539108189486" expanded="true" signature="5530:5570" ph="..." />
             <marker date="1539108189486" expanded="true" signature="7813:7826" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problems/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>
