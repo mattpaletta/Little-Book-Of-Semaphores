@@ -33,7 +33,7 @@ def merge_sort(lis):
                 cLL = next(LL)
 
 if __name__ == "__main__":
-    lst = list(range(1, 8000000 + 1))
+    lst = list(range(1, 8000 + 1))
     print("Staring merge")
     start = time.time()
     x = merge_sort(list(lst))
